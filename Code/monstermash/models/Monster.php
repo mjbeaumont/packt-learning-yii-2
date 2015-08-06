@@ -39,7 +39,10 @@ class Monster extends ActiveRecord implements IdentityInterface
         return [
             [['age'], 'integer'],
             [['name', 'username', 'password', 'authKey'], 'string', 'max' => 255],
-            [['gender'], 'string', 'max' => 1]
+            [['gender'], 'string', 'max' => 1],
+            [['username'], 'unique'],
+            [['password'], 'string', 'min' => 6],
+            [['gender'], 'in', 'range' => ['m','f']]
         ];
     }
 
@@ -50,7 +53,7 @@ class Monster extends ActiveRecord implements IdentityInterface
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'name' => 'Full Name',
             'age' => 'Age',
             'gender' => 'Gender',
             'username' => 'Username',

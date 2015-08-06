@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Monster */
 
-$this->title = 'Create Monster';
+$this->title = 'Register';
 $this->params['breadcrumbs'][] = ['label' => 'Monsters', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

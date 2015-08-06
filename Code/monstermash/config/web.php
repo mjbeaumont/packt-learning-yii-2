@@ -33,7 +33,10 @@ $config = [
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false
+            'showScriptName' => false,
+            'rules' => [
+                '/register' => 'monster/create'
+            ]
         ],
         'view' => [
             'class' => 'app\components\View'
