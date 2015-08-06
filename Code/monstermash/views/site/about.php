@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        This is the About page. You may modify the following file to customize its content:
+        This is the About page. You will find information about our site, but not any garlic. We avoid garlic, because it is dangerous to some of our users.
     </p>
 
     <code><?= __FILE__ ?></code>
