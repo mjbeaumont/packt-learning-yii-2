@@ -46,4 +46,10 @@ class Monstertest extends \yii\db\ActiveRecord
             'gender' => 'Gender',
         ];
     }
+
+    public function getIsOld()
+    {
+        return ($this->age > 40) ? true : false;
+    }
+
 }

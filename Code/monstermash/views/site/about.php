@@ -52,6 +52,17 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         Validate Monster 1 Errors: <pre><?= var_dump($validateMonster1->getErrors())?></pre>
     </p>
+    <p><h3>Enter your favorite monster's name</h3>
+    <?= Html::beginForm()?>
+    <?= Html::input('text', 'monsterName', null, ['id' => 'monsterName']);?>
+    <?= Html::input('submit', 'monsterSubmit', 'submit', ['id' => 'monsterSubmit']);?>
+    <?= Html::endForm()?>
+    </p>
+
+    <?php if ($monsterName):?>
+        <p class="monster-name">Your favorite monster's name is: <?= Html::encode($monsterName)?></p>
+    <?php endif?>
+
 
 
 

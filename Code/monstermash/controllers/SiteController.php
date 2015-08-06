@@ -89,6 +89,11 @@ class SiteController extends Controller
 
     public function actionAbout()
     {
-        return $this->render('about');
+        $monsterName = Yii::$app->request->post('monsterName');
+
+
+        return $this->render('about',[
+            'monsterName' => $monsterName
+        ]);
     }
 }
