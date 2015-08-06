@@ -15,8 +15,11 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'app\models\Monster',
             'enableAutoLogin' => true,
+        ],
+        'security' => [
+            'passwordHashStrategy' => 'password_hash'
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

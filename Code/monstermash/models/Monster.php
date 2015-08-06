@@ -20,6 +20,9 @@ use yii\base\NotSupportedException;
  */
 class Monster extends ActiveRecord implements IdentityInterface
 {
+
+    public $hashPassword  = false;
+
     /**
      * @inheritdoc
      */
@@ -88,6 +91,18 @@ class Monster extends ActiveRecord implements IdentityInterface
 
     public function validatePassword($password)
     {
-        return ($password === $this->password);
+        return \Yii::$app->security->validatePassword($password, $this->password);
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($this->hashPassword) {
+                $this->password = \Yii::$app->security->generatePasswordHash($this->password, 10);
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }

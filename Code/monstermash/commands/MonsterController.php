@@ -53,6 +53,7 @@ class MonsterController extends Controller
 
         foreach ($monsterData as $data) {
             $monster = new Monster($data);
+            $monster->hashPassword = true;
             $monster->save();
         }
     }
