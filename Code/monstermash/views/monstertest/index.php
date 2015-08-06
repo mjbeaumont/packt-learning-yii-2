@@ -7,8 +7,11 @@ use yii\grid\GridView;
 /* @var $searchModel app\models\MonstertestSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Monstertests';
+$this->title = 'Learning Yii 2 - Monstertests';
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerMetaTag(['name'=>'description','content'=>'This is my first Yii application!']);
+$this->registerJsFile('//cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.3/angular.min.js',['position'=>$this::POS_HEAD]);
+
 ?>
 <div class="monstertest-index">
 
@@ -25,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'name',
             'age',
             'gender',
