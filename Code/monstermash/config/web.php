@@ -21,6 +21,9 @@ $config = [
         'security' => [
             'passwordHashStrategy' => 'password_hash'
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager'
+        ],
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],

@@ -32,13 +32,18 @@ class MonsterController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['update', 'delete'],
-                        'roles' => ['@']
+                        'actions' => ['update'],
+                        'roles' => ['member']
                     ],
+                    [
+                        'allow' => true,
+                        'actions' => ['delete'],
+                        'roles' => ['admin']
+                    ]
                 ],
                 'denyCallback' => function($rule, $action) {
                     if ($action->id == 'delete') {
-                        throw new ForbiddenHttpException('You must be logged in to delete users');
+                        throw new ForbiddenHttpException('Only administrators can delete users.');
                     } else {
                         if (Yii::$app->user->isGuest) {
                             Yii::$app->user->loginRequired();

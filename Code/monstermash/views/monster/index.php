@@ -33,7 +33,19 @@ $this->params['breadcrumbs'][] = $this->title;
             // 'password',
             // 'authKey',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'update' => function($url, $model, $key) {
+                        $options = [
+                            'title' => Yii::t('yii', 'Update'),
+                            'aria-label' => Yii::t('yii', 'Update'),
+                            'data-pjax' => '0',
+                        ];
+                      return (Yii::$app->user->can('admin') || Yii::$app->user->can('updateMonster', ['user' => $model])) ? Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options) : '';
+                    }
+                ]
+            ],
         ],
     ]); ?>
 
