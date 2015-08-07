@@ -108,4 +108,20 @@ class Monster extends ActiveRecord implements IdentityInterface
             return false;
         }
     }
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if ($insert) {
+            $auth = Yii::$app->authManager;
+            if ($this->name == "Dracula") {
+                $role = $auth->getRole('admin');
+            } else {
+                $role = $auth->getRole('member');
+            }
+
+            $auth->assign($role, $this->id);
+        }
+        
+        parent::afterSave($insert, $changedAttributes);
+    }
 }

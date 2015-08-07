@@ -4,6 +4,8 @@ namespace app\commands;
 
 use yii\console\Controller;
 use app\models\Monster;
+use \Yii;
+use app\rbac\ProfileRule;
 
 class MonsterController extends Controller
 {
@@ -56,5 +58,48 @@ class MonsterController extends Controller
             $monster->hashPassword = true;
             $monster->save();
         }
+    }
+
+    public function actionPermissions()
+    {
+        $auth = Yii::$app->authManager;
+
+        $updateMonster = $auth->createPermission('updateMonster');
+        $updateMonster->description = 'Update a monster';
+        $auth->add($updateMonster);
+
+        $deleteMonster = $auth->createPermission('deleteMonster');
+        $deleteMonster->description = 'Delete a monster';
+        $auth->add($deleteMonster);
+    }
+
+    public function actionRoles()
+    {
+        $auth = Yii::$app->authManager;
+
+        $updateMonster = $auth->getPermission('updateMonster');
+        $deleteMonster = $auth->getPermission(('deleteMonster'));
+
+        $member = $auth->createRole('member');
+        $auth->add($member);
+        $auth->addChild($member, $updateMonster);
+
+        $admin = $auth->createRole('admin');
+        $auth->add($admin);
+        $auth->addChild($admin, $deleteMonster);
+        $auth->addChild($admin, $member);
+
+    }
+
+    public function actionRules()
+    {
+        $auth = Yii::$app->authManager;
+
+        $rule = new ProfileRule();
+        $auth->add($rule);
+
+        $updateMonster = $auth->getPermission('updateMonster');
+        $updateMonster->ruleName = $rule->name;
+        $auth->update('updateMonster', $updateMonster);
     }
 }

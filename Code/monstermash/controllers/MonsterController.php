@@ -6,8 +6,11 @@ use Yii;
 use app\models\Monster;
 use app\models\MonsterSearch;
 use yii\web\Controller;
+use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
+
 
 /**
  * MonsterController implements the CRUD actions for Monster model.
@@ -23,6 +26,26 @@ class MonsterController extends Controller
                     'delete' => ['post'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['update', 'delete'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['update', 'delete'],
+                        'roles' => ['@']
+                    ],
+                ],
+                'denyCallback' => function($rule, $action) {
+                    if ($action->id == 'delete') {
+                        throw new ForbiddenHttpException('You must be logged in to delete users');
+                    } else {
+                        if (Yii::$app->user->isGuest) {
+                            Yii::$app->user->loginRequired();
+                        }
+                    }
+                }
+            ]
         ];
     }
 
