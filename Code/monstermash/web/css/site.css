@@ -89,3 +89,14 @@ a.desc:after {
     padding: 10px 20px;
     margin: 0 0 15px 0;
 }
+
+.navbar-default {
+    background-color: #ffffff;
+    border-color: transparent;
+    height: 150px;
+}
+
+.wrap > .container {
+    padding-top: 0;
+}
+
