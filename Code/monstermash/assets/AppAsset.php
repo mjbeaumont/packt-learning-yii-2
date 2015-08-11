@@ -25,5 +25,6 @@ class AppAsset extends AssetBundle
     public $depends = [
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
+        'hiqdev\assets\lightbox2\LightboxAsset'
     ];
 }
