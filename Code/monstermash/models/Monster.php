@@ -6,6 +6,8 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yii\base\NotSupportedException;
+use yii\helpers\Url;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "monster".
@@ -17,6 +19,9 @@ use yii\base\NotSupportedException;
  * @property string $username
  * @property string $password
  * @property string $authKey
+ * @property integer $skinId
+ *
+ * @property Skin $skin
  */
 class Monster extends ActiveRecord implements IdentityInterface
 {
@@ -37,7 +42,7 @@ class Monster extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['age'], 'integer'],
+            [['age','skinId'], 'integer'],
             [['name', 'username', 'password', 'authKey'], 'string', 'max' => 255],
             [['gender'], 'string', 'max' => 1],
             [['username'], 'unique'],
@@ -58,8 +63,14 @@ class Monster extends ActiveRecord implements IdentityInterface
             'gender' => 'Gender',
             'username' => 'Username',
             'password' => 'Password',
-            'authKey' => 'Auth Key'
+            'authKey' => 'Auth Key',
+            'skinId' => 'Skin Tone',
         ];
+    }
+
+    public function getSkin()
+    {
+        return $this->hasOne(Skin::className(), ['id' => 'skinId']);
     }
 
     public static function findIdentity($id)
@@ -85,6 +96,29 @@ class Monster extends ActiveRecord implements IdentityInterface
     public function validateAuthKey($authKey)
     {
         return $this->getAuthKey() === $authKey;
+    }
+
+    public function getPhotoInfo()
+    {
+        $path = Url::to('@webroot/images/photos/');
+        $url = Url::to('@web/images/photos/');
+        $filename = strtolower($this->name) . '.jpg';
+        $alt = $this->username . "'s Profile Picture";
+
+        $imageInfo = ['alt'=> $alt];
+
+        if (file_exists($path . $filename)) {
+            $imageInfo['url'] = $url.$filename;
+        } else {
+            $imageInfo['url'] = $url.'default.jpg';
+        }
+
+        return $imageInfo;
+    }
+
+    public function getProfileGender()
+    {
+        return ($this->gender === 'm') ? 'Bachelor' : 'Bachelorette';
     }
 
     public static function findByUsername($username)

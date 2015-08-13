@@ -2,10 +2,13 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use yii\helpers\ArrayHelper;
+use app\models\Skin;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Monster */
 /* @var $form yii\widgets\ActiveForm */
+$skinMap = ArrayHelper::map(Skin::find()->all(),'id','description');
 ?>
 
 <div class="monster-form">
@@ -21,6 +24,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true])->hint('6 character minimum') ?>
+
+    <?= $form->field($model, 'skinId')->radioList($skinMap);?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

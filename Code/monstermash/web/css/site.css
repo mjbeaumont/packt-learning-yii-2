@@ -100,3 +100,7 @@ a.desc:after {
     padding-top: 0;
 }
 
+.monster-view figure img {
+    max-width: 150px;
+    margin-bottom: 10px;
+}

@@ -20,35 +20,40 @@ class MonsterController extends Controller
                 'age' => 999,
                 'gender' => 'm',
                 'username' => 'fangman999',
-                'password' => 'yummyblood'
+                'password' => 'yummyblood',
+                'skinId' => 1
             ],
             [
                 'name' => 'Frankenstein',
                 'age' => 2,
                 'gender' => 'm',
                 'username' => 'stitchedtogether',
-                'password' => 'boltneck'
+                'password' => 'boltneck',
+                'skinId' => 2
             ],
             [
                 'name' => 'Medusa',
                 'age' => 34,
                 'gender' => 'f',
                 'username' => 'snakehairgirl',
-                'password' => 'dontlooknow'
+                'password' => 'dontlooknow',
+                'skinId' => 3
             ],
             [
                 'name' => 'Mummy',
                 'age' => 86,
                 'gender' => 'm',
                 'username' => 'dirtyragdude',
-                'password' => 'wrappedtight'
+                'password' => 'wrappedtight',
+                'skinId' => 4
             ],
             [
                 'name' => 'Wicked Witch',
                 'age' => 40,
                 'gender' => 'f',
                 'username' => 'broomrider4eva',
-                'password' => 'getyoumypretty'
+                'password' => 'getyoumypretty',
+                'skinId' => 2
             ],
 
         ];

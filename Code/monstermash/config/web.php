@@ -38,7 +38,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                '/register' => 'monster/create'
+                '/register' => 'monster/create',
+                '/profile/<id:[\d-]+>' => '/monster/view'
             ]
         ],
         'view' => [
