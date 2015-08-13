@@ -4,9 +4,14 @@
 
 use yii\helpers\Html;
 use app\models\Monstertest;
+use app\models\Monster;
+use yii\helpers\ArrayHelper;
 
 $this->title = 'About';
 $this->params['breadcrumbs'][] = $this->title;
+
+$selectedMonster = (!Yii::$app->user->isGuest) ? Yii::$app->user->identity->name : '';
+$monsterMap = ArrayHelper::map(Monster::find()->all(),'name','name');
 ?>
 <div class="site-about">
     <h1><?= Html::encode($this->title) ?></h1>
@@ -54,7 +59,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
     <p><h3>Enter your favorite monster's name</h3>
     <?= Html::beginForm()?>
-    <?= Html::input('text', 'monsterName', null, ['id' => 'monsterName']);?>
+    <?= Html::radioList('monsterName', $selectedMonster, $monsterMap);?>
     <?= Html::input('submit', 'monsterSubmit', 'submit', ['id' => 'monsterSubmit']);?>
     <?= Html::endForm()?>
     </p>

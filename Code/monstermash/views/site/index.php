@@ -3,6 +3,10 @@
 /* @var $this yii\web\View */
 
 use yii\helpers\Url;
+use yii\helpers\Html;
+
+$btnClass = 'btn btn-lg ';
+$btnClass .= (date('s')%2) ? 'btn-warning' : 'btn-success';
 
 $this->title = 'Monster Mash';
 ?>
@@ -13,6 +17,6 @@ $this->title = 'Monster Mash';
 
         <p class="lead">The place to find love for life, the afterlife and beyond.</p>
 
-        <p><a class="btn btn-lg btn-success" href="<?=Url::to('/monster')?>">Find Your Match</a></p>
+        <p><?= Html::a('Find Your Match', '/monster', ['class'=>$btnClass]);?></p>
     </div>
 </div>
