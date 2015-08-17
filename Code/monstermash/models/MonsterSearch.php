@@ -12,14 +12,19 @@ use app\models\Monster;
  */
 class MonsterSearch extends Monster
 {
+
+    public $beginAge;
+
+    public $endAge;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'age'], 'integer'],
-            [['name', 'gender', 'username', 'password', 'authKey'], 'safe'],
+            [['id', 'age', 'beginAge', 'endAge'], 'integer'],
+            [['name', 'gender', 'username', 'password', 'authKey','skinId'], 'safe'],
         ];
     }
 
@@ -56,15 +61,14 @@ class MonsterSearch extends Monster
         }
 
         $query->andFilterWhere([
-            'id' => $this->id,
-            'age' => $this->age,
+            'gender' => $this->gender
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
-            ->andFilterWhere(['like', 'gender', $this->gender])
-            ->andFilterWhere(['like', 'username', $this->username])
-            ->andFilterWhere(['like', 'password', $this->password])
-            ->andFilterWhere(['like', 'authKey', $this->authKey]);
+            ->andFilterWhere(['like','username', $this->username])
+            ->andFilterWhere(['>=', 'age', $this->beginAge])
+            ->andFilterWhere(['<=', 'age', $this->endAge])
+            ->andFilterWhere(['in', 'skinId', $this->skinId]);
 
         return $dataProvider;
     }
