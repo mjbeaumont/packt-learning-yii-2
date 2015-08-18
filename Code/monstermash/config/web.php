@@ -43,8 +43,22 @@ $config = [
             ]
         ],
         'view' => [
-            'class' => 'app\components\View'
+            'class' => 'app\components\View',
+            /*'theme' => [
+                'pathMap' => [
+                    '@app/views' => [
+                        '@app/themes/feminine'
+                    ]
+                ]
+            ]*/
         ],
+        /*'assetManager' => [
+            'bundles' => [
+                'app\assets\AppAsset' => [
+                    'css' => ['css/feminine.css']
+                ]
+            ]
+        ],*/
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

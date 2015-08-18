@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\Monster;
 use app\models\MonsterSearch;
+use yii\base\Theme;
 use yii\web\Controller;
 use yii\web\ForbiddenHttpException;
 use yii\web\NotFoundHttpException;
@@ -146,5 +147,31 @@ class MonsterController extends Controller
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
+    }
+
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+
+        $user = Yii::$app->user;
+
+        if (!$user->isGuest) {
+            if ($user->identity->gender == 'f') {
+                Yii::$app->view->theme = new Theme([
+                    'pathMap' => [
+                        '@app/views' => [
+                            '@app/themes/feminine'
+                        ]
+                    ]
+                ]);
+
+                Yii::$app->assetManager->getBundle('app\assets\AppAsset')->css = ['css/feminine.css'];
+
+            }
+        }
+
+        return true;
     }
 }
