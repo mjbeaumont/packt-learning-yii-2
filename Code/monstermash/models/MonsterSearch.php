@@ -50,6 +50,17 @@ class MonsterSearch extends Monster
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort' => [
+                'attributes' => [
+                    'name',
+                    'age',
+                    'gender',
+                    'skinId'
+                ]
+            ],
+            'pagination' => [
+                'pageSize' => 3
+            ]
         ]);
 
         $this->load($params);

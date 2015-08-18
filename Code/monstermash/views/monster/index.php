@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use yii\widgets\ListView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\MonsterSearch */
@@ -15,34 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <?= GridView::widget([
+    <?= ListView::widget([
         'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id',
-            'name',
-            'age',
-            'gender',
-            'username',
-            // 'password',
-            // 'authKey',
-
-            [
-                'class' => 'yii\grid\ActionColumn',
-                'buttons' => [
-                    'update' => function($url, $model, $key) {
-                        $options = [
-                            'title' => Yii::t('yii', 'Update'),
-                            'aria-label' => Yii::t('yii', 'Update'),
-                            'data-pjax' => '0',
-                        ];
-                      return (Yii::$app->user->can('admin') || Yii::$app->user->can('updateMonster', ['user' => $model])) ? Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options) : '';
-                    }
-                ]
-            ],
-        ],
-    ]); ?>
+        'itemView' => '_monster',
+        'itemOptions' => ['class'=>'list-monster'],
+        'layout' => "{sorter}\n{summary}\n{items}\n{pager}"
+    ]);?>
 
 </div>
