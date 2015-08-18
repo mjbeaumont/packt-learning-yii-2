@@ -104,3 +104,45 @@ a.desc:after {
     max-width: 150px;
     margin-bottom: 10px;
 }
+
+.tt-highlight {
+    background-color: yellow;
+}
+
+.list-monster {
+    width: 28%;
+    display: inline-block;
+    margin: 2%;
+}
+
+.list-monster figure img {
+    max-width: 150px;
+}
+
+.list-monster ul {
+    list-style-type: none;
+    padding-left: 5px;
+}
+
+.list-monster ul li span {
+    font-weight: bold;
+}
+
+.pagination {
+    display: block;
+}
+
+.sorter {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.sorter:before {
+    content: 'Sort By:';
+    font-weight: bold;
+}
+
+.sorter li {
+    display: inline-block;
+    margin-left: 20px;
+}

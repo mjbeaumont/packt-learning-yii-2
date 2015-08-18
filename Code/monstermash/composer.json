@@ -18,7 +18,8 @@
         "yiisoft/yii2": ">=2.0.5",
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
-        "hiqdev/yii2-asset-lightbox2": "^2.7"
+        "hiqdev/yii2-asset-lightbox2": "^2.7",
+        "kartik-v/yii2-widget-typeahead": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",

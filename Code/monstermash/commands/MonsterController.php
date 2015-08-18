@@ -55,6 +55,39 @@ class MonsterController extends Controller
                 'password' => 'getyoumypretty',
                 'skinId' => 2
             ],
+            [
+                'name' => 'Wolfman',
+                'age' => 22,
+                'gender' => 'm',
+                'username' => 'hairycanary',
+                'password' => 'howlatthemoon',
+                'skinId' => 3
+            ],
+            [
+                'name' => 'Godzilla',
+                'age' => 60,
+                'gender' => 'm',
+                'username' => 'kingofmonsters',
+                'password' => 'buildinggoboom',
+                'skinId' => 2
+            ],
+            [
+                'name' => 'Siren',
+                'age' => 28,
+                'gender' => 'f',
+                'username' => 'songoflove',
+                'password' => 'plugthoseears',
+                'skinId' => 3
+            ],
+            [
+                'name' => 'Bride of Frankestein',
+                'age' => 3,
+                'gender' => 'f',
+                'username' => 'besthairever',
+                'password' => 'shriekwhenmad',
+                'skinId' => 2
+            ],
+
 
         ];
 

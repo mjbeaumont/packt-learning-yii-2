@@ -4,11 +4,14 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\ArrayHelper;
 use app\models\Skin;
+use kartik\typeahead\TypeaheadBasic;
+use app\models\Monster;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\MonsterSearch */
 /* @var $form yii\widgets\ActiveForm */
 $skinMap = ArrayHelper::map(Skin::find()->all(),'id','description');
+$nameData = ArrayHelper::getColumn(Monster::find()->all(),'name');
 ?>
 
 <div class="monster-search">
@@ -18,7 +21,11 @@ $skinMap = ArrayHelper::map(Skin::find()->all(),'id','description');
         'method' => 'get',
     ]); ?>
 
-    <?= $form->field($model, 'name') ?>
+    <?= $form->field($model, 'name')->widget(TypeaheadBasic::className(), [
+            'data' => $nameData,
+            'options' => ['placeholder'=>'Begin typing to see suggestions...'],
+            'pluginOptions' => ['highlight'=>true]
+        ]) ?>
 
     <?= $form->field($model, 'beginAge') ?>
 
