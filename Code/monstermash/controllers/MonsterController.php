@@ -93,6 +93,11 @@ class MonsterController extends Controller
         $model->hashPassword = true;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            Yii::$app->mailer->compose('register',['model'=>$model])
+                ->setFrom('admin@monstermash.dev')
+                ->setTo('test@test.com')
+                ->setSubject('Welcome to Monstermash!')
+                ->send();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
