@@ -61,14 +61,17 @@ class Monster extends ActiveRecord implements IdentityInterface
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'name' => 'Full Name',
-            'age' => 'Age',
-            'gender' => 'Gender',
-            'username' => 'Username',
-            'password' => 'Password',
-            'authKey' => 'Auth Key',
-            'skinId' => 'Skin Tone',
+            'id' => Yii::t('monster','ID'),
+            'name' => Yii::t('monster','Full Name'),
+            'age' => Yii::t('monster','Age'),
+            'gender' => Yii::t('monster','Gender'),
+            'username' => Yii::t('monster','Username'),
+            'password' => Yii::t('monster','Password'),
+            'authKey' => Yii::t('monster','Auth Key'),
+            'skinId' => Yii::t('monster','Skin Tone'),
+            'beginAge' => Yii::t('monster','Begin Age'),
+            'endAge' => Yii::t('monster','End Age'),
+            'imageFile' => Yii::t('monster','Image File')
         ];
     }
 
